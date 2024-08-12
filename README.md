@@ -1,16 +1,20 @@
-# Ejercicio Super Heros
-Objetivo: aprender los comandos git básicos.
+# Ejercicio Super Heroes
 
-Instalar previamente en la computadora:
-+ Git
-+ Visual Studio Code
+**Objetivo:** practicar comandos git básicos.
+
+> Instalar previamente en la computadora:
+> + Git
+> + Visual Studio Code
+>
+> Tip: hablitar en VS Code la opción File / Auto Save
 
 ## Setup inicial
 Abrir una nueva terminal de comandos en Visual Studio Code y clonar este repositorio localmente.
-
-git clone <url>
-cd nombreRepo
+```
+git clone <url git-superheroes-USERNAME>
+cd git-superheroes-USERNAME
 code .
+```
 
 ## Parte A Heroes
 
@@ -39,7 +43,7 @@ Winter Soldier
 Starlord
 Gamora
 ```
-Ejecutar los comandos `git add heroes.md` y `git commit -m "add secondary heros"`
+Ejecutar los comandos `git add heroes.md` y `git commit -m "add more heros"`
 
 4. Ejecutar el comando `git push` y verificar que los cambios queradon en el repositorio remoto GitHub (web).
 
