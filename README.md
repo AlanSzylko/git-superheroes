@@ -1,22 +1,27 @@
-# Ejercicio Super Heroes
+# 🦸‍♂️ Ejercicio Super Heroes 🦸‍♀️
 
 **Objetivo:** practicar comandos git básicos.
 
-> Instalar previamente en la computadora:
+> 🛠️ **Instalar previamente en la computadora:**
 > + Git
 > + Visual Studio Code
 >
-> Tip: hablitar en VS Code la opción File / Auto Save
+> 💡 **Tip:** habilitar en VS Code la opción `File / Auto Save`.
 
-## Setup inicial
+-----
+
+## ⚙️ Setup inicial
+
 Abrir una nueva terminal de comandos en Visual Studio Code y clonar este repositorio localmente.
-```
+
+```bash
 git clone <url git-superheroes-USERNAME>
 cd git-superheroes-USERNAME
 code .
 ```
+-----
 
-## Parte A Heroes
+## ✨ Parte A Heroes
 
 1. Crear un nuevo archivo `heroes.md`.
 Ejecutar los comandos `git add heroes.md` y `git commit -m "create heros file"`
@@ -47,7 +52,9 @@ Ejecutar los comandos `git add heroes.md` y `git commit -m "add more heros"`
 
 4. Ejecutar el comando `git push` y verificar que los cambios queradon en el repositorio remoto GitHub (web).
 
-## Parte B Villanos y cambio de bando
+-----
+
+## 🦹 Parte B Villanos y cambio de bando
 
 5. Crear un nuevo archivo `villains.md`.
 Ejecutar los comandos `git add villains.md` y `git commit -m "create villains file"`
@@ -75,7 +82,9 @@ Ejecutar los comandos `git add .` y `git commit -m "Wanda change sides"`
 
 8. Ejecutar el comando `git push` y verificar que los cambios queradon en el repositorio remoto GitHub (web).
 
-Parte C Historial de cambios
+-----
+
+## 📜 Parte C Historial de cambios
 
 9. Ejecutar el comando `git log --oneline` y realizar un screenshot del la terminal.
 10. Crear un nuevo Issue en GitHub (web) con el subject `Final commit log`.
