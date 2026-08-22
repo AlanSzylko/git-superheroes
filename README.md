@@ -1,91 +1,156 @@
-# 🦸‍♂️ Ejercicio Super Héroes 🦸‍♀️
+# Ejercicio Superheroes
 
-**Objetivo:** practicar comandos git básicos.
+**Objetivo:** practicar comandos git para trabajar con ramas y resolver conflictos.
 
-> 🛠️ **Instalar previamente en la computadora:**
-> + Git
-> + Visual Studio Code
+> **Instalar previamente en la computadora:**
+> - Git
+> - Node.js
+> - Visual Studio Code
 >
-> 💡 **Tip:** habilitar en VS Code la opción `File / Auto Save`.
+> **Tip:** habilitar en VS Code la opción `File / Auto Save`.
 
------
+---
 
-## ⚙️ Setup inicial
+## Setup inicial
 
-Abrir una nueva terminal de comandos en Visual Studio Code y clonar este repositorio localmente.
+Clonar el repositorio, instalar dependencias y levantar la app:
 
 ```bash
 git clone <url git-superheroes-USERNAME>
 cd git-superheroes-USERNAME
+npm install
+```
+
+Abrir el proyecto en VS Code:
+
+```bash
 code .
 ```
------
 
-## ✨ Parte A: Héroes
+Levantar la app en el navegador:
 
-1. Crear un nuevo archivo `heroes.md`.
-Ejecutar los comandos `git add heroes.md` y `git commit -m "create heroes file"`
-
-2. Editar el archivo `heroes.md` agregando las siguientes líneas:
+```bash
+npm run dev
 ```
-Iron Man
-Captain America
-Black Widow
-Thor
-Hulk
-Hawkeye
-Nick Fury
+
+La app muestra dos tablas: **Heroes** y **Villains**. Dejarla corriendo mientras trabajás.
+
+---
+
+## Parte A: Rama de héroes
+
+1. Crear y moverse a la rama `feature/heroes`:
+
+```bash
+git branch feature/heroes
+git switch feature/heroes
 ```
-Ejecutar los comandos `git add heroes.md` y `git commit -m "add main heroes"`
 
-3. Editar el archivo `heroes.md` agregando las siguientes líneas:
+2. Abrir el archivo `src/domain/SuperheroesList.ts` y agregar dos héroes nuevos a la lista `characters`:
+
+```ts
+{ name: "Black Widow", side: "hero" },
+{ name: "Hawkeye", side: "hero" },
 ```
-Pepper Potts
-War Machine
-JARVIS
-Spider-Man
-Winter Soldier
-Starlord
-Gamora
+
+Guardar el archivo y verificar que los nuevos héroes aparecen en la app.
+
+Ejecutar:
+
+```bash
+git add src/domain/SuperheroesList.ts
+git commit -m "add heroes"
 ```
-Ejecutar los comandos `git add heroes.md` y `git commit -m "add more heroes"`
 
-4. Ejecutar el comando `git push` y verificar que los cambios quedaron en el repositorio remoto GitHub (web).
+3. En el mismo archivo, cambiar el nombre de Wanda por "Scarlet Witch":
 
------
-
-## 🦹 Parte B: Villanos y cambio de bando
-
-5. Crear un nuevo archivo `villains.md`.
-Ejecutar los comandos `git add villains.md` y `git commit -m "create villains file"`
-
-6. Editar el archivo `villains.md` agregando las siguientes líneas:
+```ts
+{ name: "Scarlet Witch", side: "hero" },
 ```
-Loki
-Ultron
-Thanos
-Red Skull
-Green Goblin
-Wanda Maximoff
-```
-Ejecutar los comandos `git add villains.md` y `git commit -m "add main villains"`
 
-7. Editar el archivo `villains.md` eliminando la línea:
-```
-Wanda Maximoff
-```
-y editar el archivo `heroes.md` agregando la línea:
-```
-Scarlet Witch
-```
-Ejecutar los comandos `git add .` y `git commit -m "Wanda change sides"`
+Guardar y verificar en la app que el personaje pasó a la tabla de Heroes con su nuevo nombre.
 
-8. Ejecutar el comando `git push` y verificar que los cambios quedaron en el repositorio remoto GitHub (web).
+Ejecutar:
 
------
+```bash
+git add src/domain/SuperheroesList.ts
+git commit -m "change Wanda's name to Scarlet Witch"
+```
 
-## 📜 Parte C: Historial de cambios
+---
 
-9. Ejecutar el comando `git log --oneline` y realizar un screenshot del la terminal.
-10. Crear un nuevo Issue en GitHub (web) con el subject `Final commit log`.
-11. Copiar la imagen capturada del log en el cuerpo del issue creado.
+## Parte B: Rama de villanos
+
+4. Volver a `main` y crear la rama `feature/villains`:
+
+```bash
+git switch main
+git branch feature/villains
+git switch feature/villains
+```
+
+> Notá que en la app el personaje volvió a aparecer como `Wanda`, porque esta rama sale desde `main`.
+
+5. Abrir `src/domain/SuperheroesList.ts` y agregar dos villanos nuevos a la lista `characters`:
+
+```ts
+{ name: "Ultron", side: "villain" },
+{ name: "Red Skull", side: "villain" },
+```
+
+Guardar y verificar en la app.
+
+Ejecutar:
+
+```bash
+git add src/domain/SuperheroesList.ts
+git commit -m "add villains"
+```
+
+6. En el mismo archivo, el nombre `Wanda` está incompleto. Corregirlo a nombre completo y mantenerla como villana:
+
+```ts
+{ name: "Wanda Maximoff", side: "villain" },
+```
+
+Guardar y ejecutar:
+
+```bash
+git add src/domain/SuperheroesList.ts
+git commit -m "fix Wanda's name"
+```
+
+---
+
+## Parte C: Merge y conflicto
+
+### Qué es un conflicto
+
+Cuando dos ramas modifican la **misma línea** del mismo archivo, git no puede decidir cuál cambio conservar. Eso se llama **conflicto**. Git pausa el merge y marca las líneas en conflicto para que el usuario elija qué mantener.
+
+Eso es exactamente lo que va a pasar: ambas ramas modificaron la línea de `Wanda`, pero de forma diferente.
+
+7. Volver a `main` e integrar la rama de héroes:
+
+```bash
+git switch main
+git merge feature/heroes
+```
+
+Verificar en la app que Black Widow, Hawkeye y Scarlet Witch aparecen correctamente.
+
+8. Integrar la rama de villanos:
+
+```bash
+git merge feature/villains
+```
+
+Git va a reportar un conflicto en `src/domain/SuperheroesList.ts`. Mantener una de las dos versiones de Wanda Maximoff/Scarlet Witch y mantener también todos los personajes agregados. Luego completar el merge:
+
+```bash
+git add src/domain/SuperheroesList.ts
+git commit -m "merge feature/villains, resolve conflict"
+```
+
+9. Ejecutar `git log --oneline --graph` para ver el grafo de commits resultante.
+10. Moverse a cada rama y ejecutar `git push` en cada una. Verificar que los cambios de todas las ramas se ven en el repositorio remoto en GitHub (web).
