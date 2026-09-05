@@ -7,7 +7,7 @@
 ## ⚙️ Setup inicial
 
 1. Realiza un fork del repositorio. A partir de este punto, se trabajará en el repositorio creado en este paso.
-2. En el fork: Clonar el repositorio con `git clone <https://github.com/USUARIO/git-superheroes>`
+2. En el fork: Clonar el repositorio con `git clone https://github.com/<USUARIO>/git-superheroes`
 3. Moverse a la carpeta del repositorio e instalr dependendencias con `npm install`
 4. Verificar que funciona ejecutando `npm run dev`
 
