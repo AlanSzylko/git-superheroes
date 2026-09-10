@@ -7,7 +7,7 @@ export class SuperheroesList {
     { name: "Thor", side: "hero" },
     { name: "Thanos", side: "villain" },
     { name: "Loki", side: "villain" },
-    { name: "Wanda", side: "villain" },
+    { name: "Wanda Maximoff", side: "villain" },
     { name: "Ultron", side: "villain" },
     { name: "Red Skull", side: "villain" },
   ];
@@ -19,6 +19,7 @@ export class SuperheroesList {
   getVillains(): Superhero[] {
     return this.characters.filter((c) => c.side === "villain");
   }
+
 
   getAll(): Superhero[] {
     return this.characters;
